@@ -20,8 +20,12 @@ public class F1 {
     public static void main(String[] args) {
         JFrame j = new JFrame("Java F1");
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setSize(1100, 600);
+        j.setSize(1100, 610);
+        // before makeing the frame visible we have to add the image to it
+        j.add(new Road());
+        //make the frame visible
         j.setVisible(true);
+
     }
     
 }
