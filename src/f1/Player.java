@@ -17,19 +17,27 @@ import javax.swing.ImageIcon;
 public class Player {
     Image img = new ImageIcon("res/Player.png").getImage();
     // car's sparametrs : speed, acseleration, way
-    int speed = 10;
+    int speed = 100;
     int acsel = 0;
     int way = 0;
     // coordinates
     int x = 100;
     int y = 160;
     int layer1 = 0;
-    
+    int layer2 = 1200;
     
     public void move(){
         // way = way + speed
         way += speed;
-        // layer1 = layer1 - speed
-        layer1 -= speed;
+        
+        if(layer2 - speed <= 0){
+            layer1= 0;
+            layer2 = 1200;
+        }else{
+           // layer1 = layer1 - speed
+           layer1 -= speed;
+           //layer2 = layer2 - speed 
+           layer2 -= speed;
+        }
     }
 }
