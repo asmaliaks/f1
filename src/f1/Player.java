@@ -63,7 +63,7 @@ public class Player {
             acsel = 1;
         }
         if(key == KeyEvent.VK_LEFT){
-            acsel = -1;
+            acsel = -3;
         }
         if(key == KeyEvent.VK_UP && speed != 0){
             dy = 5;

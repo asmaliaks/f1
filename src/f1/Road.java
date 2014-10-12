@@ -13,6 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,7 +25,7 @@ import javax.swing.Timer;
  *
  * @author asmalouski
  */
-public class Road extends JPanel implements ActionListener{
+public class Road extends JPanel implements ActionListener, Runnable{
     
     Timer mainTimer = new Timer(20, this);
     
@@ -29,10 +33,28 @@ public class Road extends JPanel implements ActionListener{
     
     Player player = new Player();
     
+    Thread enemiesFactory = new  Thread(this);
+    
+    List<Enemy> enemies = new ArrayList<Enemy>();
+    
     public Road(){
         mainTimer.start();
+        enemiesFactory.start();
         addKeyListener(new MyKeyAdapter());
         setFocusable(true);
+    }
+
+    @Override
+    public void run() {
+        while(true){
+            Random rand = new Random();
+            try{
+                Thread.sleep(rand.nextInt(1000));
+                enemies.add(new Enemy(1200, rand.nextInt(600), rand.nextInt(35), this));
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -55,6 +77,17 @@ public class Road extends JPanel implements ActionListener{
         g.drawImage(img, player.layer1, 0, null);
         g.drawImage(img, player.layer2, 0, null);
         g.drawImage(player.img, player.x, player.y, null);
+        
+        Iterator<Enemy> i = enemies.iterator();
+        while(i.hasNext()){
+            Enemy e = i.next();
+            if(e.x >= 2400 || e.x <= -2400 ){
+                i.remove();
+            }else{
+                e.move();
+                g.drawImage(e.img, e.x, e.y, null);
+            } 
+        }
     }
 
     @Override
