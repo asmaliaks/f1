@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -94,5 +95,17 @@ public class Road extends JPanel implements ActionListener, Runnable{
     public void actionPerformed(ActionEvent e) {
         player.move();
         repaint();
+        testCollisionWithEnemies();
+    }
+    
+    private void testCollisionWithEnemies(){
+        Iterator<Enemy> i = enemies.iterator();
+        while(i.hasNext()){
+            Enemy e = i.next();
+            if(player.getRect().intersects(e.getRect())){
+                JOptionPane.showMessageDialog(null, "You lost!");
+                System.exit(1);
+            }
+        }
     }
 }

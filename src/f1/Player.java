@@ -2,6 +2,7 @@ package f1;
 
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -23,6 +24,9 @@ public class Player {
     public static final int MAX_BOTTOM = 480;
     
     Image img = new ImageIcon("res/Player.png").getImage();
+    public Rectangle getRect(){
+        return new Rectangle(x, y, 120, 40);
+    }
     // car's sparametrs : speed, acseleration, way
     int speed = 0;
     int acsel = 0;
@@ -33,7 +37,7 @@ public class Player {
     int dy = 0;
     int layer1 = 0;
     int layer2 = 1200;
-    
+
     public void move(){
         // way = way + speed
         way += speed;
