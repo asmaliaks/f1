@@ -38,14 +38,18 @@ public class Road extends JPanel implements ActionListener{
 
     
     private class MyKeyAdapter extends KeyAdapter {
+       
+        @Override
         public void keyPressed(KeyEvent e){
             player.keyPressed(e);
         }
-        public void keyRleased(KeyEvent e){
+        @Override
+        public void keyReleased(KeyEvent e){
             player.keyReleased(e);
         }
     }
     
+    @Override
     public void paint(Graphics g){
         g = (Graphics2D) g;
         g.drawImage(img, player.layer1, 0, null);

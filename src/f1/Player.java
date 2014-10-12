@@ -17,20 +17,35 @@ import javax.swing.JOptionPane;
  * @author asmalouski
  */
 public class Player {
+    
+    public static final int MAX_SPEED = 50;
+    public static final int MAX_TOP = 50;
+    public static final int MAX_BOTTOM = 480;
+    
     Image img = new ImageIcon("res/Player.png").getImage();
     // car's sparametrs : speed, acseleration, way
-    int speed = 50;
+    int speed = 0;
     int acsel = 0;
     int way = 0;
     // coordinates
     int x = 100;
     int y = 160;
+    int dy = 0;
     int layer1 = 0;
     int layer2 = 1200;
     
     public void move(){
         // way = way + speed
         way += speed;
+        // change speed
+        speed += acsel;
+        if(speed <= 0) speed = 0;
+        if(speed >= MAX_SPEED) speed = MAX_SPEED;
+//        // change coardinations  y
+        y -= dy;
+        if(y <= MAX_TOP)y = MAX_TOP;
+        if(y >= MAX_BOTTOM)y = MAX_BOTTOM;
+        
         
         if(layer2 - speed <= 0){
             layer1= 0;
@@ -43,10 +58,29 @@ public class Player {
         }
     }
     public void keyPressed(KeyEvent e){
-        JOptionPane.showMessageDialog(null, "key pressed");
+        int key = e.getKeyCode();
+        if(key == KeyEvent.VK_RIGHT){
+            acsel = 1;
+        }
+        if(key == KeyEvent.VK_LEFT){
+            acsel = -1;
+        }
+        if(key == KeyEvent.VK_UP && speed != 0){
+            dy = 5;
+        }
+        if(key == KeyEvent.VK_DOWN && speed != 0){
+            dy = -5;
+        }
     }
     
     public void keyReleased(KeyEvent e){
-        JOptionPane.showMessageDialog(null, "key pressed");
+        int key = e.getKeyCode();
+        if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT){
+           acsel = 0;
+
+        }
+        if(key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
+            dy = 0;
+        }
     }
 }
