@@ -2,7 +2,9 @@ package f1;
 
 
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +19,7 @@ import javax.swing.ImageIcon;
 public class Player {
     Image img = new ImageIcon("res/Player.png").getImage();
     // car's sparametrs : speed, acseleration, way
-    int speed = 100;
+    int speed = 50;
     int acsel = 0;
     int way = 0;
     // coordinates
@@ -39,5 +41,12 @@ public class Player {
            //layer2 = layer2 - speed 
            layer2 -= speed;
         }
+    }
+    public void keyPressed(KeyEvent e){
+        JOptionPane.showMessageDialog(null, "key pressed");
+    }
+    
+    public void keyReleased(KeyEvent e){
+        JOptionPane.showMessageDialog(null, "key pressed");
     }
 }
