@@ -70,9 +70,11 @@ public class Player {
             acsel = -3;
         }
         if(key == KeyEvent.VK_UP && speed != 0){
+            img = new ImageIcon("res/Player_Left.png").getImage();
             dy = 5;
         }
         if(key == KeyEvent.VK_DOWN && speed != 0){
+            img = new ImageIcon("res/Player_Right.png").getImage();
             dy = -5;
         }
     }
@@ -84,6 +86,7 @@ public class Player {
 
         }
         if(key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
+            img = new ImageIcon("res/Player.png").getImage();
             dy = 0;
         }
     }
