@@ -23,7 +23,10 @@ public class Player {
     public static final int MAX_TOP = 50;
     public static final int MAX_BOTTOM = 480;
     
-    Image img = new ImageIcon("res/Player.png").getImage();
+    Image img_c = new ImageIcon("res/Player.png").getImage();
+    Image img_l = new ImageIcon("res/Player_Left.png").getImage();
+    Image img_r = new ImageIcon("res/Player_Right.png").getImage();
+    Image img = img_c;
     public Rectangle getRect(){
         return new Rectangle(x, y, 120, 40);
     }
@@ -70,11 +73,11 @@ public class Player {
             acsel = -3;
         }
         if(key == KeyEvent.VK_UP && speed != 0){
-            img = new ImageIcon("res/Player_Left.png").getImage();
+            img = img_l;
             dy = 5;
         }
         if(key == KeyEvent.VK_DOWN && speed != 0){
-            img = new ImageIcon("res/Player_Right.png").getImage();
+            img = img_r;
             dy = -5;
         }
     }
@@ -86,7 +89,7 @@ public class Player {
 
         }
         if(key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
-            img = new ImageIcon("res/Player.png").getImage();
+            img = img_c;
             dy = 0;
         }
     }
