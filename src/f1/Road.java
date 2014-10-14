@@ -6,6 +6,8 @@
 
 package f1;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -78,6 +80,12 @@ public class Road extends JPanel implements ActionListener, Runnable{
         g.drawImage(img, player.layer1, 0, null);
         g.drawImage(img, player.layer2, 0, null);
         g.drawImage(player.img, player.x, player.y, null);
+        
+        double speed = (200/Player.MAX_SPEED)*player.speed;
+        g.setColor(Color.BLACK);
+        Font font = new Font("Arial", Font.ITALIC, 20);
+        g.setFont(font);
+        g.drawString("Speed : "+speed+" km/h", 100, 30);
         
         Iterator<Enemy> i = enemies.iterator();
         while(i.hasNext()){
